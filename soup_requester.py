@@ -42,7 +42,8 @@ def get_book_list_url(category_url: str) -> list:
 
     while True:
         for book in book_list_soup:
-            book_url = BASE_URL + "catalogue/" + book.a["href"][9:]
+            book_url_suffix = book.a["href"].replace("../../../", "")
+            book_url = BASE_URL + "catalogue/" + book_url_suffix
             book_links.append(book_url)
 
         next_soup = get_soup(category_url).select(".next a")
