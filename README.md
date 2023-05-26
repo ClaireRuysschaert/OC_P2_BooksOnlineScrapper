@@ -24,3 +24,8 @@ Windows:
 
 ## Launch the script
 You can now launch the **scrapper.py** that will extract the data from Books to Scrap.
+
+The script will :
+    - Get categories names and urls from home page
+    - Get book's url list from a category url
+    - Get 9 book's information from detail book url (Product page url, Universal product code, Title, Price including ans excluding tax, Number available, Product description, Category, Review rating, Image url) 
