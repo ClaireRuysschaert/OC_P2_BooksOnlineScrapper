@@ -1,11 +1,6 @@
 import os
 import requests
-from soup_requester import (
-    get_categories_name_url,
-    get_book_list_url,
-    get_book_informations,
-)
-from soup_requester import HOME_PAGE_URL
+from soup_requester import BookScrapper
 
 # 1 create root CSV_IMAGE folder
 ROOT_FOLDER_NAME = "CSV-IMAGES"
@@ -13,11 +8,11 @@ root_folder_path = os.path.join(os.getcwd(), ROOT_FOLDER_NAME)
 if not os.path.isdir(root_folder_path):
     os.mkdir(root_folder_path)
 
-categories_name_url = get_categories_name_url(HOME_PAGE_URL)
+categories_name_url = BookScrapper.get_categories_name_url()
 
 books_categories_urls = {}
 for category_name, category_url in categories_name_url.items():
-    books_categories_urls[category_name] = get_book_list_url(category_url)
+    books_categories_urls[category_name] = BookScrapper.get_book_list_url(category_url)
 
 
 for category, book_links in books_categories_urls.items():
@@ -51,7 +46,7 @@ for category, book_links in books_categories_urls.items():
                 category,
                 review_rating,
                 image_url,
-            ) = get_book_informations(book_url)
+            ) = BookScrapper.get_book_informations(book_url)
             csv_file.write(
                 ";".join(
                     [
